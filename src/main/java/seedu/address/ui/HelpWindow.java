@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.awt.*;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -34,7 +35,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "\n 2. Clear all orders/returns while orders are listed \n"
             + "      Format: clear FLAG INDEX \n"
             + "      Eg. clear -o -f (force clear order list without prompt) OR\n"
-            + "      Eg. clear -r -f (force clear return list without prompt)"
+            + "      Eg. clear -r -f (force clear return list without prompt) \n"
 
             + "\n 3. Delete a specified order/return order from the list of orders/return orders \n"
             + "      Format: delete FLAG INDEX \n"
@@ -47,7 +48,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "\n 5. Edit a parcel's specified attribute\n"
             + "      Format: edit FLAG INDEX PARCEL_ATTRIBUTE \n"
             + "      Eg. edit -o 2 n/James Charles (Edit the customer name in the second order of\n"
-            + " the order list to 'James Charles') \n"
+            + "          the order list to 'James Charles') \n"
 
             + "\n 6. Exit the Delino application\n"
             + "      Format: exit \n"
@@ -77,7 +78,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "       OR      return TRANSACTION_ID \n"
             + "       Eg. return tid/ac17s2a n/Bobby Tan a/123 Delta Road #03-333 Singapore 123456\n"
             + "                  p/91230456 rts/12-12-2020 1300 w/Jurong Warehouse c/NIL type/glass \n"
-            + "       OR  return tid/ac123d"
+            + "       OR  return tid/ac123d \n"
 
             + "\n 12. View orders at a specified Singapore postal sector "
             + "(i.e. the first two digits of the postal code)\n"
@@ -107,8 +108,14 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         Text text = new Text(10, 40, HELP_MESSAGE);
+        text.setWrappingWidth(500);
         helpMessage.setText(HELP_MESSAGE);
         scene = new Scene(new Group(text));
+        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        int width = gd.getDisplayMode().getWidth();
+        int height = gd.getDisplayMode().getHeight();
+        root.setMaxHeight(height);
+        root.setMaxWidth(width);
     }
 
     /**
